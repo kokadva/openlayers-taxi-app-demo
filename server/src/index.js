@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.send('Taxi Demo APP (Node.js, Openlayers)')
 })
 
-const coordinates = [78.65, -32.65];
+const coordinates = [41.717398, 44.719741];
 let index = 0;
 
 app.get('/cars', (req, res) => {
@@ -22,8 +22,8 @@ app.get('/cars', (req, res) => {
         cars: [
             {
                 location: {
-                    latitude: coordinates[0] + index,
-                    longitude: coordinates[1] + index
+                    latitude: coordinates[0] + index * 0.001,
+                    longitude: coordinates[1] + index * 0.001
                 },
                 name: "Konstantine",
                 imageUrl: "https://i.ibb.co/N1vgyys/profile.jpg",

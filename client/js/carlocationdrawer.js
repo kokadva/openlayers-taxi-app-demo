@@ -1,8 +1,9 @@
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
-import {Feature, Overlay} from "ol";
+import {Feature} from "ol";
 import {Point} from "ol/geom";
 import {Icon, Style} from "ol/style";
+import {transformCoordinates} from "./utils";
 
 const getVectorSource = () => {
     return new VectorSource();
@@ -41,7 +42,8 @@ export class CarLocationDrawer {
         popupDrawer.clear();
 
         carsData.cars.forEach((carInfo) => {
-            const coordinates = [carInfo.location.longitude, carInfo.location.latitude];
+            let coordinates = [carInfo.location.longitude, carInfo.location.latitude];
+            coordinates = transformCoordinates(coordinates);
             const carPoint = new Feature(new Point(coordinates));
             const popupDrawer = this.popupDrawer;
             carPoint.setStyle(carIconStyle);

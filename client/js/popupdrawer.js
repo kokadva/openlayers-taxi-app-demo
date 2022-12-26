@@ -1,4 +1,5 @@
 import {Overlay} from "ol";
+import {transformCoordinates} from "./utils";
 
 const popupElement = document.getElementById('popup');
 const popup = new Overlay({
@@ -46,7 +47,8 @@ export class PopupDrawer {
     }
 
     addPopup(carInfo, feature) {
-        const coordinates = [carInfo.location.longitude, carInfo.location.latitude];
+        let coordinates = [carInfo.location.longitude, carInfo.location.latitude];
+        coordinates = transformCoordinates(coordinates);
         popup.setPosition(coordinates);
         this.feature = feature;
         this.carInfo = carInfo;
