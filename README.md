@@ -29,6 +29,8 @@ Change the client's base url of the server accordingly (dir: `client/js/main.js`
   * For server: `docker run -p 3000:3000 -d <server image name>`
   * For client: `docker run -p 80:80 -d <client image name>`
 
+TODO add dockerfile for the client
+
 For other docker commands google <3 or as ChatGPT 
 
 
