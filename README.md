@@ -20,7 +20,17 @@ metadata
 
 ### How to run in production:
 
-TODO describe
+* Build `client` and `server` as a docker image: 
+  * For server: `docker build -t <image-name> server/`
+  * For client: `docker build -t <image-name> client/`
+* Push images to an image registry (hub.docker.com)
+* On your VM machine perform `docker login` to your docker image registry account
+* To start the apps:
+  * For server: `docker run -p 3000:3000 -d <server image name>`
+  * For client: `docker run -p 80:80 -d <client image name>`
+
+For other docker commands google <3 or as ChatGPT 
+
 
 ### Technologies used:
 * Openlayers
