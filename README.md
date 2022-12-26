@@ -10,7 +10,14 @@ TODO Here goes screenshots
 
 ### How to run locally:
 
-TODO
+* Run Server:
+  * Go to `server` dir
+  * Run `npm install`
+  * Run `npm run start`
+* Run client:
+  * Go to `client` dir
+  * Run `npm install`
+  * Run `npm run start` 
 
 ### How to run in production:
 
