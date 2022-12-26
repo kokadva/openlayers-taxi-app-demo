@@ -19,7 +19,7 @@ metadata
   * Run `npm run start` 
 
 ### How to run in production:
-
+Change the client's base url of the server accordingly (dir: `client/js/main.js`)
 * Build `client` and `server` as a docker image: 
   * For server: `docker build -t <image-name> server/`
   * For client: `docker build -t <image-name> client/`
