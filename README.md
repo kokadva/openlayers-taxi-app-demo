@@ -5,8 +5,7 @@ A demo project of taxi cars moving around shown on map as live location with
 metadata
 
 ### Screenshots:
-
-TODO Here goes screenshots
+![Screenshot 1](static/img1.png)
 
 ### How to run locally:
 
@@ -21,7 +20,7 @@ TODO Here goes screenshots
 
 ### How to run in production:
 
-TODO
+TODO describe
 
 ### Technologies used:
 * Openlayers
