@@ -14,25 +14,16 @@ const getVectorLayer = () => {
     })
 }
 
-const popupElement = document.getElementById('popup');
-
 
 const carIconStyle = new Style({
     image: new Icon({
-        anchor: [0.5, 46],
+        anchor: [0.5, 0.5],
         anchorXUnits: 'fraction',
-        anchorYUnits: 'pixels',
+        anchorYUnits: 'fraction',
         src: 'static/car.png',
     }),
 });
 
-const getPopupOverlay = () => {
-    return new Overlay({
-        element: popupElement,
-        positioning: 'bottom-center',
-        stopEvent: false,
-    });
-}
 
 export class CarLocationDrawer {
 
@@ -55,7 +46,7 @@ export class CarLocationDrawer {
             const popupDrawer = this.popupDrawer;
             carPoint.setStyle(carIconStyle);
             vectorSource.addFeature(carPoint);
-            popupDrawer.addPopup(carInfo)
+            popupDrawer.addPopup(carInfo, carPoint)
         })
     }
 

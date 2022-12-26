@@ -1,17 +1,32 @@
 import Map from 'ol/Map.js';
 import View from 'ol/View.js';
-import {OSM} from 'ol/source.js';
+import {OSM, XYZ} from 'ol/source.js';
 import {Tile as TileLayer} from 'ol/layer.js';
 import {CarLocationProvider} from "./carlocationprovider";
 import {CarLocationDrawer} from "./carlocationdrawer";
 import {PopupDrawer} from "./popupdrawer";
 
-const raster = new TileLayer({
+const rasterLayer = new TileLayer({
     source: new OSM(),
 });
 
+const key = 'U4TB1Bcgau3wRomRNAcU';
+
+const aerial = new XYZ({
+    url: 'https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=' + key,
+    maxZoom: 20,
+    crossOrigin: '',
+
+});
+
+const satelliteLayer = new TileLayer({
+    source: aerial
+})
+
+satelliteLayer.setVisible(false);
+
 const map = new Map({
-    layers: [raster],
+    layers: [rasterLayer, satelliteLayer],
     target: 'map',
     view: new View({
         center: [-11000000, 4600000],
@@ -25,3 +40,22 @@ let popupDrawer = new PopupDrawer(map);
 let carLocationDrawer = new CarLocationDrawer(map, popupDrawer);
 carLocationProvider.onNewLocation((d) => carLocationDrawer.addToMap.call(carLocationDrawer, d));
 carLocationProvider.start()
+
+map.on("moveend", (evt) => popupDrawer.update());
+map.on("movestart", (evt) => popupDrawer.update());
+map.on("pointerdrag", (evt) => popupDrawer.update());
+map.on("change:view", (evt) => popupDrawer.update());
+
+
+let rad = document.layersForm.layers;
+
+const layers = {
+    "osm": rasterLayer,
+    "areal": satelliteLayer
+}
+
+const updateLayers = () => {
+    rad.forEach((r)=> layers[r.value].setVisible(r.checked));
+}
+
+rad.forEach((r) => r.addEventListener('change', updateLayers));
