@@ -10,23 +10,24 @@ const popup = new Overlay({
 
 const getPopupContent = (carInfo) => {
     const box = document.createElement("div");
-
     box.setAttribute("class", "popup-window")
-    box.setAttribute('height', "200px")
-    box.setAttribute('width', "200px")
-    const name = document.createElement("p")
-    name.innerHTML = `Name: ${carInfo.name}`;
-    box.appendChild(name)
 
     const img = document.createElement("img");
     img.setAttribute("src", carInfo.imageUrl);
-    img.setAttribute("height", "25px");
-    img.setAttribute("width", "25px");
     box.appendChild(img);
 
-    const status = document.createElement("p")
-    status.innerHTML = `Name: ${carInfo.status}`;
+    const name = document.createElement("div")
+    name.innerHTML = `Name: ${carInfo.name}`;
+    box.appendChild(name)
+
+
+    const status = document.createElement("div")
+    status.innerHTML = `Status: ${carInfo.status}`;
     box.appendChild(status)
+
+    const date = document.createElement("div")
+    date.innerHTML = `Date: ${carInfo.date}`;
+    box.appendChild(date)
 
     return box.outerHTML;
 }
@@ -49,6 +50,7 @@ export class PopupDrawer {
     addPopup(carInfo, feature) {
         let coordinates = [carInfo.location.longitude, carInfo.location.latitude];
         coordinates = transformCoordinates(coordinates);
+        console.log(coordinates);
         popup.setPosition(coordinates);
         this.feature = feature;
         this.carInfo = carInfo;

@@ -16,7 +16,6 @@ const aerial = new XYZ({
     url: 'https://api.maptiler.com/tiles/satellite/{z}/{x}/{y}.jpg?key=' + key,
     maxZoom: 20,
     crossOrigin: '',
-
 });
 
 const satelliteLayer = new TileLayer({
@@ -29,8 +28,8 @@ const map = new Map({
     layers: [rasterLayer, satelliteLayer],
     target: 'map',
     view: new View({
-        center: [-11000000, 4600000],
-        zoom: 4
+        center: [4980064.771340098, 5119423.052469303],
+        zoom: 14
     }),
 });
 
